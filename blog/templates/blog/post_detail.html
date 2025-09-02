@@ -1,0 +1,25 @@
+<!-- templates/blog/post_detail.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="card bg-base-100 shadow-xl p-6">
+  <h2 class="text-2xl font-bold">{{ post.title }}</h2>
+  <p class="text-gray-500 text-sm">by {{ post.author }} | {{ post.created|date:"M d, Y" }}</p>
+  <p class="mt-4">{{ post.content }}</p>
+</div>
+
+<!-- Comment form -->
+<div class="mt-6">
+  <h3 class="text-xl font-bold mb-2">Comments</h3>
+  <form hx-post="{% url 'add_comment' post.id %}" hx-target="#comment-list" hx-swap="beforeend" class="space-y-2">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+  </form>
+</div>
+
+<!-- Comment list -->
+<ul id="comment-list" class="mt-4 space-y-2">
+  {% for comment in post.comments.all %}
+    {% include "blog/partials/comment.html" %}
+  {% endfor %}
+</ul>
+{% endblock %}

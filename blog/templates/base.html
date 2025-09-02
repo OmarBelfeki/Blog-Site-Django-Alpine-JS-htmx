@@ -1,0 +1,22 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="bg-base-200 min-h-screen">
+  <button @click="document.documentElement.setAttribute('data-theme',
+  document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light')"
+  class="btn btn-sm">
+  Toggle Dark Mode
+</button>
+  <div class="container mx-auto p-6">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
